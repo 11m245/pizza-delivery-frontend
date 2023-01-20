@@ -1,12 +1,12 @@
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
-function MenuItemCard({ item }) {
-  const { name, image } = item;
+function MenuCard({ menu }) {
+  const { name, image } = menu;
   return (
     <>
-      <div className="item-wrapper">
+      <div className="menu-wrapper">
         <div className="img-box">
-          <img src={image} alt="item-img" srcset="" />
+          <img src={image} alt="menu-img" srcset="" />
         </div>
         <h3>{name}</h3>
         <KeyboardArrowRightRoundedIcon />
@@ -15,4 +15,4 @@ function MenuItemCard({ item }) {
   );
 }
 
-export { MenuItemCard };
+export { MenuCard };

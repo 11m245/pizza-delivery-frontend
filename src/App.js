@@ -58,7 +58,7 @@ function App() {
 function Home() {
   return (
     <>
-      <h1>Welcome to Pizza Delivery Application</h1>
+      <h1 className="text-center">Welcome to Pizza Delivery Application</h1>
       <Outlet />
     </>
   );
