@@ -16,10 +16,10 @@ import { ActivateUser } from "./components/ActivateUser";
 import { Header } from "./components/Header";
 export const apiContext = createContext();
 function App() {
-  const serverApi = "http://localhost:4000";
-  const clientURL = "http://localhost:3000";
-  // const serverApi = "https://pizza-delivery-backend.vercel.app";
-  // const clientURL = "https://candid-blancmange-22f08a.netlify.app";
+  // const serverApi = "http://localhost:4000";
+  // const clientURL = "http://localhost:3000";
+  const serverApi = "https://pizza-delivery-backend.vercel.app";
+  const clientURL = "https://candid-blancmange-22f08a.netlify.app";
   const contextObj = {
     serverApi: serverApi,
     clientURL: clientURL,
