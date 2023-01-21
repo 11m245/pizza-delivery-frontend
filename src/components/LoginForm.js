@@ -54,7 +54,7 @@ export function LoginForm() {
   return (
     <>
       <form onSubmit={handleSubmit} className="login-form form">
-        <h3>login</h3>
+        <h3 className="text-center">login</h3>
         <TextField
           id="email"
           type="text"

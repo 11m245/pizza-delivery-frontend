@@ -18,6 +18,8 @@ export function SignupForm() {
       initialValues: {
         name: "",
         age: "",
+        pincode: "",
+        address: "",
         mobile: "",
         email: "",
         password: "",
@@ -25,6 +27,8 @@ export function SignupForm() {
       validationSchema: yup.object({
         name: yup.string().required().min(3),
         age: yup.number().required().min(12),
+        pincode: yup.string().required().min(6),
+        address: yup.string().required().min(20),
         mobile: yup.string().required().min(10),
         email: yup.string().email().required(),
         password: yup.string().required().min(8),
@@ -61,7 +65,7 @@ export function SignupForm() {
   return (
     <>
       <form onSubmit={handleSubmit} className="signup-form form">
-        <h3>Registration</h3>
+        <h3 className="text-center">Registration</h3>
         <Button
           onClick={() => navigate("/")}
           variant="outlined"
@@ -93,6 +97,31 @@ export function SignupForm() {
           error={touched.age && errors.age ? true : false}
           helperText={touched.age && errors.age ? errors.age : null}
         />
+        <TextField
+          id="pincode"
+          label="Pincode"
+          type="pincode"
+          name="pincode"
+          value={values.pincode}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.pincode && errors.pincode ? true : false}
+          helperText={touched.pincode && errors.pincode ? errors.pincode : null}
+        />
+
+        <TextField
+          multiline
+          id="address"
+          label="Address"
+          type="address"
+          name="address"
+          value={values.address}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.address && errors.address ? true : false}
+          helperText={touched.address && errors.address ? errors.address : null}
+        />
+
         <TextField
           id="mobile"
           label="Mobile"

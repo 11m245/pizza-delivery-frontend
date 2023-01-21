@@ -126,15 +126,11 @@ svg {
 
 /*Hover*/
 .pizza-card:hover .pizza-card-img {
-  transform: translateY(-25%);
- 
+  transform: translateY(-25%); 
   box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
 }
 
-.pizza-card-button:hover {
-  border: 1px solid #ffcaa6;
-  background-color: #ffcaa6;
-}
+
 
 /* header style starts */
 header{
@@ -210,16 +206,21 @@ header{
   justify-content: center;
   gap: 10px;
   align-items: center;
-
   position: fixed;  
   bottom: 0;
   left: 0;
   background-color: #d5d5d5;
   border-radius: 25px 25px 0 0;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 .bottom-menus-container  .MuiSvgIcon-root{
  color:#373848;
+}
+
+.bottom-menu-wrapper:hover, .bottom-menu-wrapper.active .MuiSvgIcon-root{
+/* border: 2px solid red; */
+transform: translateY(-6px) scale(1.2);
+color: #e64322;
 }
 
 /* bottom navigation style ends */
@@ -231,7 +232,7 @@ main{
   
   background-color: #faf9fb;
   margin-top: 60px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .main-container{
@@ -239,12 +240,12 @@ main{
   width: 100%;
   padding-bottom: 100px;
     background-color: #faf9fb;
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
 
 .banner{
 height: 130px;
-border: 2px solid rgb(221, 184, 19);
+/* border: 2px solid rgb(221, 184, 19); */
 overflow: hidden;
 display: flex;
 align-items: center;
@@ -342,10 +343,6 @@ height: 100%;
   font-size: 18px;
   font-weight: 500;
   transition: 0.5s;
-}
-
-.active{
-  outline: 10px solid red;
 }
 
 /* items */
@@ -464,12 +461,13 @@ font-weight: 700;
 }
 .cart-container {
   width: 100%;  
+  height: calc(100% - 150px);
   padding: 10px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 .cart-items{
     width: 100%;
-    height: 400px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -542,7 +540,7 @@ gap: 10px;
   color: #e64322;
 }
 .total-section{
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -568,4 +566,6 @@ font-size: large!important;
 font-weight: 600!important;
 letter-spacing: 2px!important;
 }
+
+
 /* main section style ends */

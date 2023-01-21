@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { apiContext } from "../App";
 import { Badge } from "@mui/material";
 
-function Header() {
+function Header({ showCart, setShowCart }) {
   // const navigate = useNavigate();
   // const [username, setUsername] = useState("Demo User");
   // const { serverApi } = useContext(apiContext);
@@ -57,7 +57,12 @@ function Header() {
           <input type="text" placeholder="Search" />
         </div>
         <div className="shopping-cart">
-          <Badge color="secondary" badgeContent={8} max={10}>
+          <Badge
+            color="secondary"
+            badgeContent={8}
+            max={10}
+            onClick={() => setShowCart(!showCart)}
+          >
             <ShoppingCartIcon />
           </Badge>
         </div>

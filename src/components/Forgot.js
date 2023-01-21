@@ -81,7 +81,7 @@ export function Forgot() {
   }
   return (
     <>
-      <h3>Forgot Password?</h3>
+      <h3 className="text-center">Forgot Password?</h3>
       <form onSubmit={handleSubmit} className="verify-user-form form">
         <TextField
           id="email"

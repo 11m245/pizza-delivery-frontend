@@ -1,7 +1,7 @@
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { LoginForm } from "./components/LoginForm";
 import { SignupForm } from "./components/SignupForm";
 import { Forgot } from "./components/Forgot";
@@ -20,6 +20,7 @@ function App() {
   // const clientURL = "http://localhost:3000";
   const serverApi = "https://pizza-delivery-backend.vercel.app";
   const clientURL = "https://candid-blancmange-22f08a.netlify.app";
+
   const contextObj = {
     serverApi: serverApi,
     clientURL: clientURL,
@@ -38,9 +39,7 @@ function App() {
               <Route path="/success" element={<Success />} />
             </Route>
             <Route path="/activate/:id" element={<ActivateUser />} />
-            <Route path="/user" element={<Layout />}>
-              <Route index element={<LoginForm />} />
-            </Route>
+            <Route path="/user" element={<Layout />}></Route>
             <Route path="/pizza" element={<PizzaCard />} />
             <Route path="*" element={<NotFound />} />
 
