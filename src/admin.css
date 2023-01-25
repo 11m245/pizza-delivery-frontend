@@ -1,0 +1,127 @@
+.admin-page-container{ 
+    width: 100%;
+    height: 100vh;   
+}
+
+.admin-page-container .header-container{
+    width: 100%;
+    height: 60px;    
+}
+
+.admin-page-container .bottom-menus-container{
+    width: 100%;
+    height: 60px;    
+}
+.admin-page-container .body-container{
+    width: 100%;
+    height: calc(100vh - 60px);
+    /* border: 2px solid rgb(9, 160, 41); */
+}
+
+.admin-page-container .main-container{
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid rgb(160, 110, 9); */
+}
+
+/* mainconteiner->outlet */
+
+.dashboard-container{
+width: 100%;
+height: 100%;
+/* border: 2px solid rgb(160, 110, 9); */
+}
+
+/* card */
+
+.card-container{    
+    width: 18%;
+    height: 65px;
+    position: relative;
+    padding-top: 14px;
+}
+
+.dash-logo{
+   position: absolute;
+   top:-30px;   
+}
+
+/* filtered orders */
+
+.filtered-orders-container{
+    /* border: 2px solid rgb(160, 110, 9); */
+}
+
+.order-container{
+   
+}
+.order-container .top-section{
+   display: flex;
+   justify-content: space-between;
+}
+.order-container * {
+    margin: 0;
+}
+.order-container .address{
+    font-size: 14px;
+}
+.order-container .pin{
+    font-size: 12px;
+}
+
+.order-container .order-status .order-date .payment-status .total .total-price{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.order-container .order-date {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.order-container .bottom-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-container .status-actions{
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.section{
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px rgb(9, 160, 41);
+}
+
+.title-big{
+    font-size: 20px;
+    font-weight: 600;
+}
+.title-small {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* inventory */
+
+.admin-inventory-container{
+    width: 100%;
+    height: 100%;
+    
+}
+.inventory-stock-update-form{
+    display: grid;
+    gap: 10px 30px;
+}
+
+.input-elements-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px,700px));
+    gap: 10px 30px;
+}

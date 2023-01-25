@@ -1,4 +1,6 @@
 import "./App.css";
+import "./admin.css";
+
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { createContext, useState } from "react";
@@ -10,16 +12,21 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { NotFound } from "./components/notfound";
 import { ChangePasswordForm } from "./components/ChangePasswordForm";
 import { PizzaCard } from "./components/PizzaCard";
-import { Layout } from "./Layout";
+import { UserLayout } from "./UserLayout";
 
 import { ActivateUser } from "./components/ActivateUser";
 import { Header } from "./components/Header";
+import { AdminLayout } from "./AdminLayout";
+import { AdminHome } from "./adminComponents/AdminHome";
+import { AdminInventory } from "./adminComponents/AdminInventory";
+import { Items, EditItem, DeleteItem } from "./adminComponents/Items";
+import { NewItem } from "./adminComponents/NewItem";
 export const apiContext = createContext();
 function App() {
-  // const serverApi = "http://localhost:4000";
-  // const clientURL = "http://localhost:3000";
-  const serverApi = "https://pizza-delivery-backend.vercel.app";
-  const clientURL = "https://candid-blancmange-22f08a.netlify.app";
+  const serverApi = "http://localhost:4000";
+  const clientURL = "http://localhost:3000";
+  // const serverApi = "https://pizza-delivery-backend.vercel.app";
+  // const clientURL = "https://candid-blancmange-22f08a.netlify.app";
 
   const contextObj = {
     serverApi: serverApi,
@@ -39,8 +46,22 @@ function App() {
               <Route path="/success" element={<Success />} />
             </Route>
             <Route path="/activate/:id" element={<ActivateUser />} />
-            <Route path="/user" element={<Layout />}></Route>
-            <Route path="/pizza" element={<PizzaCard />} />
+            <Route path="/user" element={<UserLayout />}></Route>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminHome />} />
+              <Route path="stock" element={<AdminInventory />} />
+              <Route path="items" element={<Items />}>
+                <Route path="new" element={<NewItem />} />
+                <Route path="edit" element={<EditItem />} />
+                <Route path="delete" element={<DeleteItem />} />
+              </Route>
+              {/* <Route path="/categories" element={<Categories />}>
+                <Route path="/new" element={<NewCategory />} />
+                <Route path="/edit" element={<EditCategory />} />
+                <Route path="/delete" element={<DeleteCategory />} />
+              </Route> */}
+            </Route>
+
             <Route path="*" element={<NotFound />} />
 
             <Route

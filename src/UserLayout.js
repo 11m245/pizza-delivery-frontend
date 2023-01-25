@@ -13,7 +13,7 @@ import { CartItem } from "./components/CartItem";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-function Layout() {
+function UserLayout() {
   const [showCart, setShowCart] = useState(false);
   const menus = [
     {
@@ -202,4 +202,4 @@ function Layout() {
   );
 }
 
-export { Layout };
+export { UserLayout };
