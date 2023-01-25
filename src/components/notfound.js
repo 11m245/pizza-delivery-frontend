@@ -15,8 +15,22 @@ function NotFound() {
           alt="not-found"
         />
       </div>
-      <button onClick={() => navigate(-1)}>back</button>
-      <button onClick={() => navigate("/")}>Home</button>
+      <div className="buttons-container d-flex justify-content-center gap-4">
+        <button
+          type="button"
+          class="btn btn-success"
+          onClick={() => navigate("/")}
+        >
+          Home
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick={() => navigate(-1)}
+        >
+          back
+        </button>
+      </div>
     </div>
   );
 }

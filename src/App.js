@@ -21,6 +21,7 @@ import { AdminHome } from "./adminComponents/AdminHome";
 import { AdminInventory } from "./adminComponents/AdminInventory";
 import { Items, EditItem, DeleteItem } from "./adminComponents/Items";
 import { NewItem } from "./adminComponents/NewItem";
+import { UserHome } from "./components/userHome";
 export const apiContext = createContext();
 function App() {
   const serverApi = "http://localhost:4000";
@@ -46,7 +47,15 @@ function App() {
               <Route path="/success" element={<Success />} />
             </Route>
             <Route path="/activate/:id" element={<ActivateUser />} />
-            <Route path="/user" element={<UserLayout />}></Route>
+            <Route path="/user" element={<UserLayout />}>
+              <Route index element={<UserHome />} />
+              {/* <Route path="chat" element={<Chat />} />
+              <Route path="wallet" element={<Wallet />} />
+              <Route path="favorties" element={<Favorties />} />
+              <Route path="reports" element={<Reports />} />
+              <Route path="settings" element={<Settings />} /> */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminHome />} />
               <Route path="stock" element={<AdminInventory />} />
@@ -60,6 +69,7 @@ function App() {
                 <Route path="/edit" element={<EditCategory />} />
                 <Route path="/delete" element={<DeleteCategory />} />
               </Route> */}
+              <Route path="*" element={<NotFound />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />

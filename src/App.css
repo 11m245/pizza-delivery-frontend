@@ -216,11 +216,19 @@ header{
 .bottom-menus-container  .MuiSvgIcon-root{
  color:#373848;
 }
-
+/* .bottom-menu-wrapper{
+  border: 2px solid red;
+} */
 .bottom-menu-wrapper:hover, .bottom-menu-wrapper.active .MuiSvgIcon-root{
 /* border: 2px solid red; */
-transform: translateY(-6px) scale(1.2);
+/* transform: translateY(-6px) scale(1.2); */
 color: #e64322;
+
+}
+
+.bottom-menu-wrapper:hover,
+.bottom-menu-wrapper.active .bottom-menu-wrapper{
+border-bottom: 2px solid #e64322!important;
 }
 
 /* bottom navigation style ends */
