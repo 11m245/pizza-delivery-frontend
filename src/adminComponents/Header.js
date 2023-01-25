@@ -11,6 +11,13 @@ import { apiContext } from "../App";
 import { Badge } from "@mui/material";
 
 function Header() {
+  const [showDropLog, setShowDropLog] = useState(false);
+  const navigate = useNavigate();
+
+  function logout() {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
   return (
     <>
       <header className="header-container">
@@ -28,7 +35,11 @@ function Header() {
             <ShoppingCartIcon />
           </Badge>
         </div>
-        <div className="profile-container">
+        <div
+          className="profile-container"
+          onClick={() => setShowDropLog(!showDropLog)}
+          onBlur={() => setShowDropLog(false)}
+        >
           <Avatar
             className="profile-pic"
             alt="Remy Sharp"
@@ -43,6 +54,13 @@ function Header() {
             }}
           />
           <p className="username">username</p>
+          {showDropLog ? (
+            <div className="drop-log-out">
+              <p className="drop-menu" onClick={logout}>
+                logout
+              </p>
+            </div>
+          ) : null}
         </div>
       </header>
     </>

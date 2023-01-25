@@ -27,14 +27,33 @@ export function LoginForm() {
         login(values);
       },
     });
+
+  async function verifyUserRole(logintoken) {
+    let result;
+    try {
+      const response = await fetch(`${serverApi}/verifyRole`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json", logintoken: logintoken },
+      });
+
+      const data = await response.json();
+      // console.log("role is", data);
+      result = data.role === "admin" ? true : false;
+    } catch (err) {
+      console.log(err);
+    }
+
+    return result;
+  }
   async function checkResponse(response) {
     let data = await response.json();
     // console.log("ck", data);
     if (response.status === 200) {
       toast.success(data.message);
       localStorage.setItem("token", data.token);
-
-      navigate("/success");
+      const isAdmin = await verifyUserRole(data.token);
+      console.log("vf user isAdmi", isAdmin);
+      isAdmin === true ? navigate("/admin") : navigate("/user");
       return data;
     } else {
       toast.error(data.message);

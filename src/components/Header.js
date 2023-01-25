@@ -11,38 +11,13 @@ import { apiContext } from "../App";
 import { Badge } from "@mui/material";
 
 function Header({ showCart, setShowCart }) {
-  // const navigate = useNavigate();
-  // const [username, setUsername] = useState("Demo User");
-  // const { serverApi } = useContext(apiContext);
-  // async function checkUserNameResponse(response) {
-  //   const data = await response.json();
-  //   if (response.status === 200) {
-  //     // console.log(" data got is", data);
-  //     setUsername(data.name);
-  //     return data;
-  //   } else {
-  //     console.log(response);
-  //   }
-  // }
-  // function getUsername() {
-  //   fetch(`${serverApi}/getUsername`, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       logintoken: localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((response) => checkUserNameResponse(response))
-  //     .catch((err) => console.log(err.message));
-  // }
+  const [showDropLog, setShowDropLog] = useState(false);
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   getUsername();
-  // }, []);
-  // function logout() {
-  //   localStorage.removeItem("token");
-  //   navigate("/");
-  // }
+  function logout() {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
   return (
     <>
       <header className="header-container">
@@ -66,7 +41,11 @@ function Header({ showCart, setShowCart }) {
             <ShoppingCartIcon />
           </Badge>
         </div>
-        <div className="profile-container">
+        <div
+          className="profile-container"
+          onClick={() => setShowDropLog(!showDropLog)}
+          onBlur={() => setShowDropLog(false)}
+        >
           <Avatar
             className="profile-pic"
             alt="Remy Sharp"
@@ -81,6 +60,13 @@ function Header({ showCart, setShowCart }) {
             }}
           />
           <p className="username">username</p>
+          {showDropLog ? (
+            <div className="drop-log-out">
+              <p className="drop-menu" onClick={logout}>
+                logout
+              </p>
+            </div>
+          ) : null}
         </div>
       </header>
     </>

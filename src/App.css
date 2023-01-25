@@ -577,3 +577,16 @@ letter-spacing: 2px!important;
 
 
 /* main section style ends */
+
+/* logout-drop */
+.drop-log-out {
+  position: absolute;
+  top: 60px;
+  background-color: #1565c0;
+  padding: 3px 10px;
+  border-radius: 5px;
+}
+
+.drop-menu {
+  color: #fff;
+}
