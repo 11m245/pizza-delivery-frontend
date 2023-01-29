@@ -1,5 +1,5 @@
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
-import { useEffect } from "react";
+
 function SubMenuContainer({ name }) {
   return (
     <>

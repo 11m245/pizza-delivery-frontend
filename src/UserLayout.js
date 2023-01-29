@@ -9,7 +9,7 @@ import { BrandingWatermark } from "@mui/icons-material";
 import { CartItem } from "./components/CartItem";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "./App";
 function UserLayout() {
   const [showCart, setShowCart] = useState(false);
@@ -96,7 +96,13 @@ function UserLayout() {
   //     isVeg: true,
   //   },
   // ];
-
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    const cTotal = cartItems.reduce((acc, cobj) => {
+      return acc + cobj.price * cobj.qty;
+    }, 0);
+    setTotal(cTotal);
+  }, [cartItems]);
   return (
     <>
       <div className="page-container">
@@ -122,15 +128,25 @@ function UserLayout() {
                     </div>
                   </div>
                   <div className="cart-items">
-                    {cartItems.map((cartItem) => (
-                      <CartItem key={cartItem._id} cartItem={cartItem} />
-                    ))}
+                    {cartItems.length > 0 ? (
+                      cartItems.map((cartItem) => (
+                        <CartItem key={cartItem._id} cartItem={cartItem} />
+                      ))
+                    ) : (
+                      <img
+                        className="mx-auto"
+                        style={{ width: "200px", height: "200px" }}
+                        src={
+                          "https://www.aytradingco.com/assets/frontend/img/no-cart-product.png"
+                        }
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="total-section">
                   <h3>Total</h3>
                   <p>
-                    <span> $ {"45.0"}</span>
+                    <span> $ {total}</span>
                   </p>
                 </div>
 

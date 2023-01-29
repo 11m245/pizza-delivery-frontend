@@ -42,7 +42,8 @@ export function cartReducer(cartItems, action) {
       }
 
       return [...filterProducts1, crproduct1];
-
+    case "GET CART":
+      return cartItems;
     default:
       return cartItems;
   }

@@ -7,13 +7,13 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import Chip from "@mui/material/Chip";
 import { useContext, useEffect, useState } from "react";
-import { apiContext } from "../App";
+import { apiContext, pizzaContext } from "../App";
 import { Badge } from "@mui/material";
 
 function Header({ showCart, setShowCart }) {
   const [showDropLog, setShowDropLog] = useState(false);
   const navigate = useNavigate();
-
+  const { cartItems } = useContext(pizzaContext);
   function logout() {
     localStorage.removeItem("token");
     navigate("/");
@@ -33,7 +33,7 @@ function Header({ showCart, setShowCart }) {
         <div className="shopping-cart">
           <Badge
             color="secondary"
-            badgeContent={8}
+            badgeContent={cartItems.length}
             max={10}
             onClick={() => setShowCart(!showCart)}
           >

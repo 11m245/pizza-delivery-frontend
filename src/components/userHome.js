@@ -7,10 +7,11 @@ import { pizzaContext } from "../App";
 function UserHome() {
   const [isMenuCategoryFetched, setIsMenuCategoryFetched] = useState(false);
   const { serverApi } = useContext(pizzaContext);
-  console.log("server api is", serverApi);
+  // console.log("server api is", serverApi);
   const [menus, setMenus] = useState([]);
   const [isProductsFetched, setIsProductsFetched] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [viewProducts, setViewProducts] = useState(allProducts);
 
   useEffect(() => {
     if (!isMenuCategoryFetched) {
@@ -22,7 +23,10 @@ function UserHome() {
     if (!isProductsFetched) {
       fetch(`${serverApi}/products/getAllProducts`)
         .then((response) => response.json())
-        .then((data) => setProducts(data.products))
+        .then((data) => {
+          setAllProducts(data.products);
+          setViewProducts(data.products);
+        })
         .catch((err) => console.log(err));
     }
   }, []);
@@ -37,11 +41,16 @@ function UserHome() {
         </div>
         <div className="row-container">
           {menus.map((menu) => (
-            <MenuCard key={menu._id} menu={menu} />
+            <MenuCard
+              key={menu._id}
+              menu={menu}
+              allProducts={allProducts}
+              setViewProducts={setViewProducts}
+            />
           ))}
         </div>
         <div className="dish-item-container">
-          {products.map((product) => (
+          {viewProducts.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
