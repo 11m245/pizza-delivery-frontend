@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Banner } from "./components/Banner";
 import { SubMenuContainer } from "./components/SubMenuContainer";
 import { MenuCard } from "./components/MenuCard";
-import { ItemCard } from "./components/ItemCard";
+import { ItemCard } from "./components/ProductCard";
 import { CartItem } from "./components/CartItem";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";

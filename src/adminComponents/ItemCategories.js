@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-function Items() {
+function ItemCategories() {
   const navigate = useNavigate();
-  const itemMenus = [
+  const itemCategoryMenus = [
     { name: "add", color: "#54B4D3", path: "new" },
     { name: "edit", color: "#E4A11B", path: "edit" },
-    { name: "delete", color: "#DC4C64", path: "delete" },
   ];
 
-
-
- 
-
   const handleClick = (menu) => {
-    console.log(menu);
     navigate(menu.path);
   };
   return (
     <>
-      <div className="items-page-container">
-        <h3 className="title-big">Items</h3>
-        <div className="item-menus d-flex gap-2 justify-content-center">
-          {itemMenus.map((menu, i) => {
+      <div className="inventory-categories-page-container">
+        <h3 className="title-big">Inventory Item Categories</h3>
+        <div className="inventory-categories-menus d-flex gap-2 justify-content-center">
+          {itemCategoryMenus.map((menu, i) => {
             return (
               <button
                 onClick={() => handleClick(menu)}
@@ -47,19 +41,20 @@ function Items() {
     </>
   );
 }
-function EditItem() {
+function EditItemCategory() {
   return (
-    <div className="edit-item-page-container">
-      <h4>EditItem</h4>
+    <div className="edit-item-category-page-container">
+      <h4>EditItemCategory</h4>
     </div>
   );
 }
 
-function DeleteItem() {
+function NewItemCategory() {
   return (
-    <div className="edit-item-page-container">
-      <h4>DeleteItem</h4>
+    <div className="new-item-category-page-container">
+      <h4>New ItemCategory</h4>
     </div>
   );
 }
-export { Items, EditItem, DeleteItem };
+
+export { ItemCategories, EditItemCategory, NewItemCategory };

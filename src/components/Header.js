@@ -25,7 +25,6 @@ function Header({ showCart, setShowCart }) {
           className="pizza-logo"
           src="..\assets\images\pizza-logo.jpg"
           alt="logo-alt"
-          srcset=""
         />
         <div className="input-search-box">
           <SearchIcon className="search-icon" sx={{ fontSize: "20px" }} />

@@ -590,3 +590,8 @@ letter-spacing: 2px!important;
 .drop-menu {
   color: #fff;
 }
+
+.btn-active{
+  border-top: 2px solid black!important;
+
+}

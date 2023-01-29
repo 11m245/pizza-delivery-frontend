@@ -2,14 +2,20 @@ import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRigh
 import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { pizzaContext } from "../App";
 
-function ItemCard({ item }) {
-  const { name, image, rating, price, isVeg } = item;
+function ProductCard({ product }) {
+  const { name, imageUrl, rating, price, isVeg } = product;
   const [currentRating, setCurrentRating] = useState(Math.floor(rating));
+  const { cartDispatch } = useContext(pizzaContext);
 
-  const handleClick = (value) => {
+  const handleRating = (value) => {
     setCurrentRating(value);
+  };
+
+  const handleAddToCart = (value) => {
+    cartDispatch({ type: "ADDED", payload: value });
   };
   return (
     <>
@@ -27,7 +33,7 @@ function ItemCard({ item }) {
           />
         </div>
         <div className="img-box">
-          <img src={image} alt="item-img" srcset="" />
+          <img src={imageUrl} alt="item-img" srcset="" />
         </div>
         <div className="item-content">
           <h3 className="item-name">{name}</h3>
@@ -41,7 +47,7 @@ function ItemCard({ item }) {
                       className={`${i < currentRating ? "orange" : "grey"}`}
                       key={i}
                       sx={{ margin: 0, padding: 0, fontSize: "15px" }}
-                      onClick={() => handleClick(i + 1)}
+                      onClick={() => handleRating(i + 1)}
                     />
                   ))}
               </div>
@@ -49,7 +55,10 @@ function ItemCard({ item }) {
                 <span>$</span> {price}
               </h3>
             </div>
-            <div className="add-to-cart">
+            <div
+              className="add-to-cart"
+              onClick={() => handleAddToCart(product)}
+            >
               <IconButton color="primary" aria-label="add to shopping cart">
                 <AddCircleIcon />
               </IconButton>
@@ -62,4 +71,4 @@ function ItemCard({ item }) {
   );
 }
 
-export { ItemCard };
+export { ProductCard };

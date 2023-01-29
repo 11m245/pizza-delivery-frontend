@@ -1,39 +1,31 @@
 import { Banner } from "./Banner";
 import { SubMenuContainer } from "./SubMenuContainer";
 import { MenuCard } from "./MenuCard";
-import { ItemCard } from "./ItemCard";
+import { ItemCard, ProductCard } from "./ProductCard";
+import { useContext, useEffect, useState } from "react";
+import { pizzaContext } from "../App";
 function UserHome() {
-  const menus = [
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza",
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "Burger",
-    },
-  ];
+  const [isMenuCategoryFetched, setIsMenuCategoryFetched] = useState(false);
+  const { serverApi } = useContext(pizzaContext);
+  console.log("server api is", serverApi);
+  const [menus, setMenus] = useState([]);
+  const [isProductsFetched, setIsProductsFetched] = useState(false);
+  const [products, setProducts] = useState([]);
 
-  const items = [
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      rating: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      rating: "3",
-      price: "25",
-      isVeg: true,
-    },
-  ];
+  useEffect(() => {
+    if (!isMenuCategoryFetched) {
+      fetch(`${serverApi}/products/category`)
+        .then((response) => response.json())
+        .then((data) => setMenus(data.categories))
+        .catch((err) => console.log(err));
+    }
+    if (!isProductsFetched) {
+      fetch(`${serverApi}/products/getAllProducts`)
+        .then((response) => response.json())
+        .then((data) => setProducts(data.products))
+        .catch((err) => console.log(err));
+    }
+  }, []);
   return (
     <div className="user-home-container">
       <div className="banner">
@@ -44,13 +36,13 @@ function UserHome() {
           <SubMenuContainer name={"Menu Category"} />
         </div>
         <div className="row-container">
-          {menus.map((menu, id) => (
-            <MenuCard key={id} menu={menu} />
+          {menus.map((menu) => (
+            <MenuCard key={menu._id} menu={menu} />
           ))}
         </div>
         <div className="dish-item-container">
-          {items.map((item) => (
-            <ItemCard item={item} />
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </div>

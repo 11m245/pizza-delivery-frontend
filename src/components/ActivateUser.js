@@ -1,10 +1,10 @@
 import { useCallback, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { apiContext } from "../App";
+import { pizzaContext } from "../App";
 
 function ActivateUser() {
   const { id } = useParams();
-  const { serverApi } = useContext(apiContext);
+  const { serverApi } = useContext(pizzaContext);
   const checkActivationResponse = useCallback(async (response) => {
     const data = await response.json();
     // console.log("data is", data);

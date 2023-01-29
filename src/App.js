@@ -19,26 +19,45 @@ import { Header } from "./components/Header";
 import { AdminLayout } from "./AdminLayout";
 import { AdminHome } from "./adminComponents/AdminHome";
 import { AdminInventory } from "./adminComponents/AdminInventory";
-import { Items, EditItem, DeleteItem } from "./adminComponents/Items";
-import { NewItem } from "./adminComponents/NewItem";
+import {
+  Items,
+  EditItem,
+  DeleteItem,
+  Products,
+  EditProduct,
+  DeleteProduct,
+} from "./adminComponents/Products";
+import { NewItem, NewProduct } from "./adminComponents/NewProduct";
 import { UserHome } from "./components/userHome";
-export const apiContext = createContext();
+import {
+  EditItemCategory,
+  ItemCategories,
+  NewItemCategory,
+} from "./adminComponents/ItemCategories";
+import { useReducer } from "react";
+import { cartReducer } from "./cartReducer";
+export const pizzaContext = createContext();
 function App() {
   const serverApi = "http://localhost:4000";
   const clientURL = "http://localhost:3000";
   // const serverApi = "https://pizza-delivery-backend.vercel.app";
   // const clientURL = "https://candid-blancmange-22f08a.netlify.app";
 
+  const initialCartItems = [];
+  const [cartItems, cartDispatch] = useReducer(cartReducer, initialCartItems);
+
   const contextObj = {
     serverApi: serverApi,
     clientURL: clientURL,
+    cartItems,
+    cartDispatch,
   };
 
   return (
     <div className="App">
       <ToastContainer theme="dark" />
       <div className="project-container">
-        <apiContext.Provider value={contextObj}>
+        <pizzaContext.Provider value={contextObj}>
           <Routes>
             <Route path="/" element={<Home />}>
               <Route index element={<LoginForm />} />
@@ -59,16 +78,16 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminHome />} />
               <Route path="stock" element={<AdminInventory />} />
-              <Route path="items" element={<Items />}>
-                <Route path="new" element={<NewItem />} />
-                <Route path="edit" element={<EditItem />} />
-                <Route path="delete" element={<DeleteItem />} />
+              <Route path="products" element={<Products />}>
+                <Route path="new" element={<NewProduct />} />
+                <Route path="edit" element={<EditProduct />} />
+                <Route path="delete" element={<DeleteProduct />} />
               </Route>
-              {/* <Route path="/categories" element={<Categories />}>
-                <Route path="/new" element={<NewCategory />} />
-                <Route path="/edit" element={<EditCategory />} />
-                <Route path="/delete" element={<DeleteCategory />} />
-              </Route> */}
+              <Route path="categories" element={<ItemCategories />}>
+                <Route path="new" element={<NewItemCategory />} />
+                <Route path="edit" element={<EditItemCategory />} />
+                {/* <Route path="/delete" element={<DeleteCategory />} /> */}
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Route>
 
@@ -79,7 +98,7 @@ function App() {
               element={<ChangePasswordForm />}
             />
           </Routes>
-        </apiContext.Provider>
+        </pizzaContext.Provider>
       </div>
     </div>
   );

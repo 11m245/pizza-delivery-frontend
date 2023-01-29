@@ -12,9 +12,10 @@ import { useNavigate } from "react-router-dom";
 function BottomNavigation() {
   const menus = [
     { name: "Home", icon: <HomeRoundedIcon />, path: "/admin" },
-    { name: "Stock", icon: <Inventory2Icon />, path: "stock" },
-    { name: "Items", icon: <SplitscreenIcon />, path: "items" },
+    { name: "Products", icon: <SplitscreenIcon />, path: "products" },
+
     { name: "Categories", icon: <CategoryIcon />, path: "categories" },
+    { name: "Stock", icon: <Inventory2Icon />, path: "stock" },
     {
       name: "Cash Report",
       icon: <AccountBalanceWalletRoundedIcon />,

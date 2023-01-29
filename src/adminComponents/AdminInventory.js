@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { AddItemInventoryForm } from "./AddItemInventoryForm";
+import { EditInventoryItemForm } from "./EditInventoryItemForm";
 import { InventoryUpdateForm } from "./InventoryUpdateForm";
 
 function AdminInventory() {
+  const [selectedCrudMenu, setSelectedCrudMenu] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
   const [filteredInventoryItems, setFilteredInventoryItems] = useState([]);
+
+  const itemCrudMenus = [
+    { name: "add New Item", color: "#54B4D3", path: "new" },
+    { name: "edit Item", color: "#E4A11B", path: "edit" },
+    { name: "update Stock", color: "#3B71CA", path: "stock-update" },
+  ];
   const inventoryItems = [
     {
       name: "Muffets Tuffets",
@@ -11,6 +20,7 @@ function AdminInventory() {
       stock: "23",
       units: "nos",
       alertLimit: "20",
+      itemCode: "PB001",
     },
     {
       name: "Thin Crust",
@@ -18,6 +28,7 @@ function AdminInventory() {
       stock: "23",
       units: "nos",
       alertLimit: "20",
+      itemCode: "PB002",
     },
     {
       name: "Moreish Pizza Base",
@@ -25,6 +36,7 @@ function AdminInventory() {
       stock: "23",
       units: "nos",
       alertLimit: "20",
+      itemCode: "PB003",
     },
     {
       name: "Vegan Gluten Pizza base",
@@ -32,6 +44,7 @@ function AdminInventory() {
       stock: "23",
       units: "nos",
       alertLimit: "20",
+      itemCode: "PB004",
     },
     {
       name: "Spicy Red Sauces",
@@ -39,6 +52,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "SA001",
     },
     {
       name: "Peppery Red Sauce",
@@ -46,6 +60,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "SA002",
     },
     {
       name: "Pesto Sauce",
@@ -53,6 +68,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "SA003",
     },
     {
       name: "Creamy Alfredo Sauce",
@@ -60,6 +76,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "SA004",
     },
     {
       name: "White Garlic Sauce",
@@ -67,6 +84,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "SA005",
     },
     {
       name: "Cheddar",
@@ -74,6 +92,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "CH001",
     },
     {
       name: "Mozzarella",
@@ -81,6 +100,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "CH002",
     },
     {
       name: "Ricotta",
@@ -88,6 +108,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "CH003",
     },
     {
       name: "Parmesan",
@@ -95,6 +116,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "CH004",
     },
     {
       name: "Provolone",
@@ -102,6 +124,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "CH005",
     },
     {
       name: "Mushroom",
@@ -109,6 +132,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "VG001",
     },
     {
       name: "Carrot",
@@ -116,6 +140,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "VG002",
     },
     {
       name: "Red Onion",
@@ -123,6 +148,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "VG003",
     },
     {
       name: "Cauliflower",
@@ -130,6 +156,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "VG004",
     },
     {
       name: "Chopped Tomato",
@@ -137,6 +164,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "VG005",
     },
     {
       name: "Pepperoni",
@@ -144,6 +172,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "ME001",
     },
     {
       name: "Chicken",
@@ -151,6 +180,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "ME002",
     },
     {
       name: "Bacon",
@@ -158,6 +188,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "ME003",
     },
     {
       name: "Ham",
@@ -165,6 +196,7 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "ME004",
     },
     {
       name: "Meatballs",
@@ -172,9 +204,9 @@ function AdminInventory() {
       stock: "50",
       units: "kgs",
       alertLimit: "10",
+      itemCode: "ME005",
     },
   ];
-
   const inventoryCategories = [
     "pizza base",
     "sauce",
@@ -190,7 +222,11 @@ function AdminInventory() {
     "#14A44D",
     "#9FA6B2",
   ];
-  const handleClick = (category) => {
+  const handleClickCrud = (crudOption) => {
+    console.log(crudOption);
+    setSelectedCrudMenu(crudOption);
+  };
+  const handleClickCategory = (category) => {
     console.log(category);
     setFilterCategory(category);
     const filter = inventoryItems.filter((item) => item.category === category);
@@ -201,13 +237,15 @@ function AdminInventory() {
     <>
       <div className="admin-inventory-container">
         <h4 className="title-big">Inventory</h4>
-        <div className="inventory-filters d-flex flex-wrap gap-2">
-          {inventoryCategories.map((category, i) => {
+        <div className="inventory-crud-menus d-flex flex-wrap gap-2">
+          {itemCrudMenus.map((crudMenu, i) => {
             return (
               <button
-                onClick={() => handleClick(category)}
+                onClick={() => handleClickCrud(crudMenu.name)}
                 type="button"
-                class="btn"
+                className={
+                  selectedCrudMenu === crudMenu.name ? "btn btn-active" : "btn"
+                }
                 style={{
                   backgroundColor: colors[i],
                   color: "white",
@@ -215,20 +253,53 @@ function AdminInventory() {
                   padding: "2px",
                 }}
               >
-                {category}
+                {crudMenu.name}
               </button>
             );
           })}
         </div>
+        {selectedCrudMenu ? (
+          <>
+            <h4>Select Category</h4>
+            <div className="inventory-filters d-flex flex-wrap gap-2">
+              {inventoryCategories.map((category, i) => {
+                return (
+                  <button
+                    onClick={() => handleClickCategory(category)}
+                    type="button"
+                    className={
+                      filterCategory === category ? "btn btn-active" : "btn"
+                    }
+                    style={{
+                      backgroundColor: colors[i],
+                      color: "white",
+                      fontWeight: 600,
+                      padding: "2px",
+                    }}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        ) : null}
 
-        {filterCategory ? (
+        {selectedCrudMenu !== "" && filterCategory ? (
           <div className="stock-update-form-container">
-            <h3 className="title-small text-center">
-              Invenotry Stock Update Form
-            </h3>
-            <InventoryUpdateForm
-              filteredInventoryItems={filteredInventoryItems}
-            />
+            {selectedCrudMenu === "update Stock" ? (
+              <InventoryUpdateForm
+                filteredInventoryItems={filteredInventoryItems}
+              />
+            ) : null}
+            {selectedCrudMenu === "add New Item" ? (
+              <AddItemInventoryForm category={filterCategory} />
+            ) : null}
+            {selectedCrudMenu === "edit Item" ? (
+              <EditInventoryItemForm
+                filteredInventoryItems={filteredInventoryItems}
+              />
+            ) : null}
           </div>
         ) : null}
       </div>

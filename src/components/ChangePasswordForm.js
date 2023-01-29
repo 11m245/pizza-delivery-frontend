@@ -4,13 +4,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
-import { apiContext } from "../App";
+import { pizzaContext } from "../App";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 export function ChangePasswordForm() {
   const { id } = useParams();
-  const { serverApi } = useContext(apiContext);
+  const { serverApi } = useContext(pizzaContext);
   const [email, setEmail] = useState("");
   const [isApiLoded, setIsApiLoaded] = useState(false);
   const navigate = useNavigate();

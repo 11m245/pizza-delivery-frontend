@@ -104,7 +104,7 @@ function Card({ card }) {
           }}
           className="count"
         >
-          {333}
+          {count}
         </h6>
       </div>
     </>

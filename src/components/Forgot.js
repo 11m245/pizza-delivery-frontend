@@ -5,12 +5,12 @@ import LockResetIcon from "@mui/icons-material/LockReset";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useContext, useRef, useState } from "react";
-import { apiContext } from "../App";
+import { pizzaContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export function Forgot() {
-  const { serverApi } = useContext(apiContext);
+  const { serverApi } = useContext(pizzaContext);
   const [isVerifiedUser, setIsVerifiedUser] = useState(false);
   const [isWrongUser, setIsWrongUser] = useState(false);
   const [isOptedReset, setIsOptedReset] = useState(false);

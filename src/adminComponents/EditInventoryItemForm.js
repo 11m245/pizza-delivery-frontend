@@ -8,7 +8,7 @@ import { pizzaContext } from "../App";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-export function InventoryUpdateForm({ filteredInventoryItems }) {
+export function EditInventoryItemForm({ filteredInventoryItems }) {
   const { serverApi } = useContext(pizzaContext);
 
   const [isApiLoded, setIsApiLoaded] = useState(false);
@@ -39,7 +39,7 @@ export function InventoryUpdateForm({ filteredInventoryItems }) {
   // console.log(filteredInventoryItems);
   return (
     <>
-      <h3 className="title-small text-center">Invenotry Stock Update Form</h3>
+      <h3 className="title-small text-center">Edit Invenotry Item Form</h3>
       <form
         onSubmit={handleSubmit}
         className="inventory-stock-update-form form"

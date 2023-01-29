@@ -9,92 +9,93 @@ import { BrandingWatermark } from "@mui/icons-material";
 import { CartItem } from "./components/CartItem";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { pizzaContext } from "./App";
 function UserLayout() {
   const [showCart, setShowCart] = useState(false);
-
-  const cart_items = [
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      quantity: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      quantity: "3",
-      price: "25",
-      isVeg: true,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      quantity: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      quantity: "3",
-      price: "25",
-      isVeg: true,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      quantity: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      quantity: "3",
-      price: "25",
-      isVeg: true,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      quantity: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      quantity: "3",
-      price: "25",
-      isVeg: true,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-      name: "Pizza1",
-      quantity: "5",
-      price: "25",
-      isVeg: false,
-    },
-    {
-      image:
-        "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-      name: "pizza2",
-      quantity: "3",
-      price: "25",
-      isVeg: true,
-    },
-  ];
+  const { cartItems } = useContext(pizzaContext);
+  // const cart_items = [
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
+  //     name: "Pizza1",
+  //     quantity: "5",
+  //     price: "25",
+  //     isVeg: false,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
+  //     name: "pizza2",
+  //     quantity: "3",
+  //     price: "25",
+  //     isVeg: true,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
+  //     name: "Pizza1",
+  //     quantity: "5",
+  //     price: "25",
+  //     isVeg: false,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
+  //     name: "pizza2",
+  //     quantity: "3",
+  //     price: "25",
+  //     isVeg: true,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
+  //     name: "Pizza1",
+  //     quantity: "5",
+  //     price: "25",
+  //     isVeg: false,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
+  //     name: "pizza2",
+  //     quantity: "3",
+  //     price: "25",
+  //     isVeg: true,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
+  //     name: "Pizza1",
+  //     quantity: "5",
+  //     price: "25",
+  //     isVeg: false,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
+  //     name: "pizza2",
+  //     quantity: "3",
+  //     price: "25",
+  //     isVeg: true,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
+  //     name: "Pizza1",
+  //     quantity: "5",
+  //     price: "25",
+  //     isVeg: false,
+  //   },
+  //   {
+  //     image:
+  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
+  //     name: "pizza2",
+  //     quantity: "3",
+  //     price: "25",
+  //     isVeg: true,
+  //   },
+  // ];
 
   return (
     <>
@@ -121,8 +122,8 @@ function UserLayout() {
                     </div>
                   </div>
                   <div className="cart-items">
-                    {cart_items.map((cartItem) => (
-                      <CartItem cartItem={cartItem} />
+                    {cartItems.map((cartItem) => (
+                      <CartItem key={cartItem._id} cartItem={cartItem} />
                     ))}
                   </div>
                 </div>
