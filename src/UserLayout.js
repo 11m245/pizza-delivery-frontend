@@ -12,6 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "./App";
 function UserLayout() {
+  const { serverApi } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
   const { cartItems } = useContext(pizzaContext);
   // const cart_items = [
@@ -103,6 +104,21 @@ function UserLayout() {
     }, 0);
     setTotal(cTotal);
   }, [cartItems]);
+
+  const placeOrder = () => {
+    console.log("cart items now", cartItems);
+    fetch(`${serverApi}/orders/new`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        logintoken: localStorage.getItem("token"),
+      },
+      body: JSON.stringify(cartItems),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("order response data", data))
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="page-container">
@@ -155,6 +171,7 @@ function UserLayout() {
                   variant="contained"
                   color="success"
                   endIcon={<SendIcon />}
+                  onClick={() => placeOrder()}
                 >
                   Check Out
                 </Button>
