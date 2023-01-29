@@ -5,8 +5,20 @@ import SwipeRightIcon from "@mui/icons-material/SwipeRight";
 import RunCircleIcon from "@mui/icons-material/RunCircle";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { pizzaContext } from "../App";
 function AdminHome() {
+  const [currentFilter, setCurrentFilter] = useState("");
+  const { serverApi } = useContext(pizzaContext);
+  const [allOrders, setAllOrders] = useState("");
+
+  useEffect(() => {
+    fetch(`${serverApi}/getTodayOrders`)
+      .then((response) => response.json())
+      .then((data) => setAllOrders(data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <div className="admin-home-container">

@@ -44,6 +44,9 @@ export function cartReducer(cartItems, action) {
       return [...filterProducts1, crproduct1];
     case "GET CART":
       return cartItems;
+    case "CLEAR":
+      cartItems.splice(0);
+      return cartItems;
     default:
       return cartItems;
   }

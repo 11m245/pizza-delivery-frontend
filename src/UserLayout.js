@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { BottomNavigation } from "./components/BottomNavigation";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -11,10 +11,11 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "./App";
+import { toast } from "react-toastify";
 function UserLayout() {
   const { serverApi } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
-  const { cartItems } = useContext(pizzaContext);
+  const { cartItems, cartDispatch } = useContext(pizzaContext);
   // const cart_items = [
   //   {
   //     image:
@@ -98,6 +99,7 @@ function UserLayout() {
   //   },
   // ];
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const cTotal = cartItems.reduce((acc, cobj) => {
       return acc + cobj.price * cobj.qty;
@@ -105,18 +107,29 @@ function UserLayout() {
     setTotal(cTotal);
   }, [cartItems]);
 
+  const clearCart = () => {
+    cartDispatch({ type: "CLEAR" });
+  };
   const placeOrder = () => {
     console.log("cart items now", cartItems);
+    const orderItems = cartItems.map((item) => {
+      return { _id: item._id, qty: item.qty };
+    });
     fetch(`${serverApi}/orders/new`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         logintoken: localStorage.getItem("token"),
       },
-      body: JSON.stringify(cartItems),
+      body: JSON.stringify(orderItems),
     })
       .then((response) => response.json())
-      .then((data) => console.log("order response data", data))
+      .then((data) => {
+        clearCart();
+        setShowCart(false);
+        console.log("order response data", data);
+        toast.success(data.message);
+      })
       .catch((err) => console.log(err));
   };
   return (

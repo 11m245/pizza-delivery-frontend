@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="App">
-      <ToastContainer theme="dark" />
+      <ToastContainer style={{ marginTop: "4rem" }} theme="dark" />
       <div className="project-container">
         <pizzaContext.Provider value={contextObj}>
           <Routes>
