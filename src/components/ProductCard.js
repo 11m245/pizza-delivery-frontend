@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { pizzaContext } from "../App";
 
 function ProductCard({ product }) {
-  const { name, imageUrl, rating, price, isVeg } = product;
+  const { name, imageUrl, rating = 0, price, isVeg } = product;
   const [currentRating, setCurrentRating] = useState(Math.floor(rating));
   const { cartDispatch } = useContext(pizzaContext);
 

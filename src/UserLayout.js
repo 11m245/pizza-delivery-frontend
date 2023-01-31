@@ -127,8 +127,11 @@ function UserLayout() {
       .then((data) => {
         clearCart();
         setShowCart(false);
-        console.log("order response data", data);
-        toast.success(data.message);
+        setTotal(0);
+        // console.log("order response data", data);
+        data.message === "order placed"
+          ? toast.success(data.message)
+          : toast.error(data.message);
       })
       .catch((err) => console.log(err));
   };
@@ -172,22 +175,27 @@ function UserLayout() {
                     )}
                   </div>
                 </div>
-                <div className="total-section">
-                  <h3>Total</h3>
-                  <p>
-                    <span> $ {total}</span>
-                  </p>
-                </div>
 
-                <Button
-                  className="check-out-button"
-                  variant="contained"
-                  color="success"
-                  endIcon={<SendIcon />}
-                  onClick={() => placeOrder()}
-                >
-                  Check Out
-                </Button>
+                {cartItems.length > 0 ? (
+                  <>
+                    {" "}
+                    <div className="total-section">
+                      <h3>Total</h3>
+                      <p>
+                        <span> $ {total}</span>
+                      </p>
+                    </div>
+                    <Button
+                      className="check-out-button"
+                      variant="contained"
+                      color="success"
+                      endIcon={<SendIcon />}
+                      onClick={() => placeOrder()}
+                    >
+                      Check Out
+                    </Button>
+                  </>
+                ) : null}
               </div>
             ) : null}
           </main>
