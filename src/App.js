@@ -23,7 +23,7 @@ import {
   EditProduct,
   DeleteProduct,
 } from "./adminComponents/Products";
-import { NewItem, NewProduct } from "./adminComponents/NewProduct";
+import { NewProduct } from "./adminComponents/NewProduct";
 import { UserHome } from "./components/userHome";
 import {
   EditItemCategory,
