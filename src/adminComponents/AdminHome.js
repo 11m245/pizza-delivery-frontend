@@ -1,5 +1,3 @@
-import TodayIcon from "@mui/icons-material/Today";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import OutdoorGrillIcon from "@mui/icons-material/OutdoorGrill";
 import SwipeRightIcon from "@mui/icons-material/SwipeRight";
 import RunCircleIcon from "@mui/icons-material/RunCircle";

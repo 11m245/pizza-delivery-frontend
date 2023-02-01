@@ -2,7 +2,7 @@ import "./App.css";
 import "./admin.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { LoginForm } from "./components/LoginForm";
 import { SignupForm } from "./components/SignupForm";
 import { Forgot } from "./components/Forgot";
@@ -10,18 +10,15 @@ import { Success } from "./components/success.js";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { NotFound } from "./components/notfound";
 import { ChangePasswordForm } from "./components/ChangePasswordForm";
-import { PizzaCard } from "./components/PizzaCard";
+
 import { UserLayout } from "./UserLayout";
 
 import { ActivateUser } from "./components/ActivateUser";
-import { Header } from "./components/Header";
+
 import { AdminLayout } from "./AdminLayout";
 import { AdminHome } from "./adminComponents/AdminHome";
 import { AdminInventory } from "./adminComponents/AdminInventory";
 import {
-  Items,
-  EditItem,
-  DeleteItem,
   Products,
   EditProduct,
   DeleteProduct,
@@ -37,10 +34,10 @@ import { useReducer } from "react";
 import { cartReducer } from "./cartReducer";
 export const pizzaContext = createContext();
 function App() {
-  // const serverApi = "http://localhost:4000";
-  // const clientURL = "http://localhost:3000";
-  const serverApi = "https://pizza-delivery-backend.vercel.app";
-  const clientURL = "https://candid-blancmange-22f08a.netlify.app";
+  const serverApi = "http://localhost:4000";
+  const clientURL = "http://localhost:3000";
+  // const serverApi = "https://pizza-delivery-backend.vercel.app";
+  // const clientURL = "https://candid-blancmange-22f08a.netlify.app";
 
   const initialCartItems = [];
   const [cartItems, cartDispatch] = useReducer(cartReducer, initialCartItems);
