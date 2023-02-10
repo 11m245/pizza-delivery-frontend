@@ -1,36 +1,50 @@
-import { useState } from "react";
+import { Button } from "@mui/material";
+import { useFormik } from "formik";
+import { useContext } from "react";
+import { useEffect, useState } from "react";
+import { pizzaContext } from "../App";
+import { SelectComponent } from "./selectFormComponent";
 
 function NewProduct() {
   const [SelectedProductCategory, setSelectedProductCategory] = useState("");
-  const productCategoriesCollection = [
-    { categoryId: "id1", category: "pizza" },
-    { categoryId: "id2", category: "burger" },
-  ];
+  const [productCategoriesCollection, setProductCategoriesCollection] =
+    useState([]);
+  const { serverApi } = useContext(pizzaContext);
+
+  const { values, error, touched, handleChange, handleBlur, handleSubmit } =
+    useFormik({ initialValues: {}, onSubmit: (values) => console.log(values) });
+
+  useEffect(() => {
+    function getProductsCategories() {
+      fetch(`${serverApi}/productCategories/all`, {
+        method: "GET",
+        headers: {
+          logintoken: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setProductCategoriesCollection(data.categories))
+        .catch((err) => console.log(err.message));
+    }
+    getProductsCategories();
+  }, []);
   return (
     <>
       <h4 className="title-small text-center">Add New Product page</h4>
       <div className="new-product-page-container">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log(e.target.category);
-          }}
-        >
-          <select
-            name="category"
-            class="form-select form-select"
-            aria-label=".form-select-sm example"
-          >
-            <option selected>select Product Category</option>
-            {productCategoriesCollection.map((productCategory) => (
-              <option value={productCategory.category}>
-                {productCategory.category}
-              </option>
-            ))}
-          </select>
-          <button type="submit">bb</button>
+        <form onSubmit={handleSubmit}>
+          <SelectComponent
+            title={"select category"}
+            options={[
+              { name: "option1", value: "01" },
+              { name: "option2", value: "02" },
+            ]}
+          />
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
         </form>
-
         {/*  */}
       </div>
     </>

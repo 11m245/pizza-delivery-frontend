@@ -25,8 +25,8 @@ export function AddItemInventoryForm({ category }) {
       },
     });
 
-  function updateStock(values) {
-    console.log("update Stock", values);
+  function addInventoryItem(values) {
+    console.log("add inventory item", values);
     //send put request
   }
   // console.log(filteredInventoryItems);
