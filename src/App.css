@@ -597,6 +597,8 @@ letter-spacing: 2px!important;
 }
 
 .btn-active{
-  border-top: 2px solid black!important;
+  border-top: 4px solid black!important;
+  outline: 2px solid black;
+  outline-offset: 2px;
 
 }

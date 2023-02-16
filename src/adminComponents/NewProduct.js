@@ -1,9 +1,9 @@
-import { Button } from "@mui/material";
+import { Button, MenuItem, Select } from "@mui/material";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { pizzaContext } from "../App";
-import { SelectComponent } from "./selectFormComponent";
 
 function NewProduct() {
   const [SelectedProductCategory, setSelectedProductCategory] = useState("");
@@ -25,22 +25,46 @@ function NewProduct() {
       })
         .then((response) => response.json())
         .then((data) => setProductCategoriesCollection(data.categories))
-        .catch((err) => console.log(err.message));
+        .catch((err) => {
+          console.log(err.message);
+          toast.error(err.message);
+        });
     }
     getProductsCategories();
   }, []);
+
+  const handleNewProductSubmit = () => {};
+  const handleSelectChange = (e) => {
+    setSelectedProductCategory(e.target.value);
+    values.productCategory = e.target.value;
+  };
   return (
     <>
       <h4 className="title-small text-center">Add New Product page</h4>
       <div className="new-product-page-container">
-        <form onSubmit={handleSubmit}>
-          <SelectComponent
-            title={"select category"}
-            options={[
-              { name: "option1", value: "01" },
-              { name: "option2", value: "02" },
-            ]}
-          />
+        <form
+          className="add-new-product-form"
+          onSubmit={handleNewProductSubmit}
+        >
+          <Select
+            labelId="product-category-select"
+            id="product-category-select"
+            value={SelectedProductCategory}
+            label="Select Product Category"
+            onChange={handleSelectChange}
+            onBlur={handleBlur}
+            name="productCategory"
+          >
+            {productCategoriesCollection.map((productCategory) => (
+              <MenuItem
+                key={productCategory._id}
+                value={productCategory.category}
+              >
+                {productCategory.category}
+              </MenuItem>
+            ))}
+          </Select>
+
           <Button type="submit" variant="contained">
             Submit
           </Button>

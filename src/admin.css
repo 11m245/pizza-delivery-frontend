@@ -136,3 +136,28 @@ height: 100%;
 /* position: relative; */
 }
 
+.new-item-category-page-container{
+    margin-top: 20px;
+    margin-inline: auto;
+    width: 350px;
+}
+
+.new-item-cetegory-form{
+    display: grid;
+    gap: 10px;
+}
+
+.edit-item-cetegory-form{
+        display: grid;
+            gap: 10px;
+}
+
+.add-new-product-form{
+    display: grid;
+        gap: 10px;
+}
+
+.form{
+    display: grid;
+    gap: 20px;
+}
