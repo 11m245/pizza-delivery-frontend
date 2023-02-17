@@ -209,7 +209,20 @@ function FilteredOrders({
     <>
       <div className="filtered-orders-container">
         <h2 className="title-big">Filtered orders</h2>
-        <p className="title-small text-center ">acceptance pending order</p>
+        <p className="title-small text-center ">
+          {filterOrderStatus === "00"
+            ? "Acceptance Pending"
+            : filterOrderStatus === "01" || filterOrderStatus === "02"
+            ? "Preparing"
+            : filterOrderStatus === "03"
+            ? "Delivery Pending"
+            : filterOrderStatus === "04"
+            ? "Cancelled"
+            : filterOrderStatus === "05"
+            ? "completed"
+            : null}{" "}
+          {"Orders"}
+        </p>
         <div className="orders-container">
           {showingOrders.map((order) => (
             <Order

@@ -102,7 +102,7 @@ function UserLayout() {
   const navigate = useNavigate();
   useEffect(() => {
     const cTotal = cartItems.reduce((acc, cobj) => {
-      return acc + cobj.price * cobj.qty;
+      return acc + parseInt(cobj.price) * parseInt(cobj.qty);
     }, 0);
     setTotal(cTotal);
   }, [cartItems]);

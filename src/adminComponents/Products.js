@@ -21,9 +21,10 @@ function Products() {
           {itemMenus.map((menu, i) => {
             return (
               <button
+                key={i}
                 onClick={() => handleClick(menu)}
                 type="button"
-                class="btn"
+                className="btn"
                 style={{
                   backgroundColor: menu.color,
                   color: "white",
