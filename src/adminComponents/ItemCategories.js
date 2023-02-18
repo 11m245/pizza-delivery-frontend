@@ -105,7 +105,7 @@ function EditItemCategory() {
   };
   return (
     <div className="edit-item-category-page-container">
-      <h4>Edit Item Category</h4>
+      <h4 className="text-center">Edit Item Category Form</h4>
       <form className="edit-item-cetegory-form" onSubmit={editItemCategory}>
         <Select
           labelId="inventory-item-category-select"

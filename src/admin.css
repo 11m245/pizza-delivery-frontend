@@ -52,8 +52,6 @@ height: 100%;
 
 .filtered-orders-container{
     /* border: 2px solid rgb(160, 110, 9); */
-
-
 }
 
 .orders-container{
@@ -63,6 +61,7 @@ height: 100%;
     grid-template-columns: repeat(auto-fit,minmax(300px, 500px));  
         justify-content: center;
     gap: 20px; 
+    margin-top: 10px;
 }
 .order-container .top-section{
    display: flex;
@@ -99,8 +98,13 @@ height: 100%;
     align-items: start;
     flex-wrap: wrap;
     gap: 5px;
+    /* position: fixed;
+    bottom: 0;
+    left: 0; */
 }
-
+.order-container{
+    /* position: relative; */
+}
 .section{
     padding: 8px;
     border-radius: 5px;
@@ -154,6 +158,8 @@ height: 100%;
 .edit-item-cetegory-form{
         display: grid;
             gap: 10px;
+        max-width: 350px;
+        margin-inline: auto;
 }
 
 .add-new-product-form{

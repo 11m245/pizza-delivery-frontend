@@ -32,6 +32,7 @@ import {
 } from "./adminComponents/ItemCategories";
 import { useReducer } from "react";
 import { cartReducer } from "./cartReducer";
+import { AllOrders } from "./adminComponents/AllOrders";
 export const pizzaContext = createContext();
 function App() {
   // const serverApi = "http://localhost:4000";
@@ -85,6 +86,7 @@ function App() {
                 {/* <Route path="/delete" element={<DeleteCategory />} /> */}
               </Route>
               <Route path="*" element={<NotFound />} />
+              <Route path="allOrders" element={<AllOrders />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
