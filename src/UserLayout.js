@@ -1,11 +1,7 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import { BottomNavigation } from "./components/BottomNavigation";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import CloseIcon from "@mui/icons-material/Close";
-
-import { BrandingWatermark } from "@mui/icons-material";
-
 import { CartItem } from "./components/CartItem";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
@@ -16,88 +12,7 @@ function UserLayout() {
   const { serverApi } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
   const { cartItems, cartDispatch } = useContext(pizzaContext);
-  // const cart_items = [
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-  //     name: "Pizza1",
-  //     quantity: "5",
-  //     price: "25",
-  //     isVeg: false,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-  //     name: "pizza2",
-  //     quantity: "3",
-  //     price: "25",
-  //     isVeg: true,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-  //     name: "Pizza1",
-  //     quantity: "5",
-  //     price: "25",
-  //     isVeg: false,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-  //     name: "pizza2",
-  //     quantity: "3",
-  //     price: "25",
-  //     isVeg: true,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-  //     name: "Pizza1",
-  //     quantity: "5",
-  //     price: "25",
-  //     isVeg: false,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-  //     name: "pizza2",
-  //     quantity: "3",
-  //     price: "25",
-  //     isVeg: true,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-  //     name: "Pizza1",
-  //     quantity: "5",
-  //     price: "25",
-  //     isVeg: false,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-  //     name: "pizza2",
-  //     quantity: "3",
-  //     price: "25",
-  //     isVeg: true,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1192094401/photo/delicious-vegetarian-pizza-on-white.jpg?s=612x612&w=0&k=20&c=Qsm2ikAI0Oz5JMu2COCmAODV_5U7YZtipj8Ic7BtJF8=",
-  //     name: "Pizza1",
-  //     quantity: "5",
-  //     price: "25",
-  //     isVeg: false,
-  //   },
-  //   {
-  //     image:
-  //       "https://media.istockphoto.com/id/1206323282/photo/juicy-hamburger-on-white-background.jpg?s=612x612&w=0&k=20&c=K0DxyiChLwewXcCy8aLjjOqkc8QXPgQMAW-vwRCzqG4=",
-  //     name: "pizza2",
-  //     quantity: "3",
-  //     price: "25",
-  //     isVeg: true,
-  //   },
-  // ];
+
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
@@ -111,7 +26,7 @@ function UserLayout() {
     cartDispatch({ type: "CLEAR" });
   };
   const placeOrder = () => {
-    console.log("cart items now", cartItems);
+    // console.log("cart items now", cartItems);
     const orderItems = cartItems.map((item) => {
       return { _id: item._id, qty: item.qty };
     });
