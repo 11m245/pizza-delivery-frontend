@@ -1,17 +1,19 @@
 import { useCallback, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { pizzaContext } from "../App";
 
 function ActivateUser() {
   const { id } = useParams();
-  const { serverApi } = useContext(pizzaContext);
+  const { serverApi, clientURL } = useContext(pizzaContext);
   const checkActivationResponse = useCallback(async (response) => {
     const data = await response.json();
     // console.log("data is", data);
     if (response.status === 200 || 401) {
-      window.location.href = "http://localhost:3000";
+      window.location.href = clientURL;
     } else {
       console.log(data.message);
+      toast.error(data.message);
     }
   }, []);
 
