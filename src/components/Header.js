@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
-import Chip from "@mui/material/Chip";
-import { useContext, useEffect, useState } from "react";
-import { apiContext, pizzaContext } from "../App";
+import { useContext, useState } from "react";
+import { pizzaContext } from "../App";
 import { Badge } from "@mui/material";
 
 function Header({ showCart, setShowCart }) {
