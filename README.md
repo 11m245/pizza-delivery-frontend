@@ -1,11 +1,10 @@
-demo user
-//client user
-email:sivaraj2siva@gmail.com
-pass:12345678
+# Pizza Order App
 
-//admin user
-email:sivaraj2siva1@gmail.com
-pass:12345678
+Using this application, users can order pizza and shop can process their orders on its login
 
-/admin => for admin
-/user => for user
+## Demo Login Credentials
+
+        
+for Shop ->  username - shop@gmail.com , password - 12345678 \
+for users -> username - user@gmail.com , password - 12345678
+
