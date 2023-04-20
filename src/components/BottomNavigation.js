@@ -11,15 +11,15 @@ import { useNavigate } from "react-router-dom";
 function BottomNavigation() {
   const menus = [
     { name: "Home", icon: <HomeRoundedIcon />, path: "/user" },
-    { name: "Chat", icon: <ChatIcon />, path: "chat" },
-    {
-      name: "Wallet",
-      icon: <AccountBalanceWalletRoundedIcon />,
-      path: "wallet",
-    },
-    { name: "Favorties", icon: <FavoriteIcon />, path: "favorties" },
+    // { name: "Chat", icon: <ChatIcon />, path: "chat" },
+    // {
+    //   name: "Wallet",
+    //   icon: <AccountBalanceWalletRoundedIcon />,
+    //   path: "wallet",
+    // },
+    // { name: "Favorties", icon: <FavoriteIcon />, path: "favorties" },
     { name: "Docs", icon: <SummarizeRoundedIcon />, path: "reports" },
-    { name: "Settings", icon: <SettingsRoundedIcon />, path: "settings" },
+    // { name: "Settings", icon: <SettingsRoundedIcon />, path: "settings" },
   ];
 
   const [active, setActive] = useState("");
