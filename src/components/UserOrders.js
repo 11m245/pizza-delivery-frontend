@@ -69,6 +69,7 @@ function Order({ order }) {
   return (
     <>
       <div className="order-container section">
+        <h6 className="text-center">Order ID : {order._id}</h6>
         <div className="top-section ">
           <div className="left">
             <p>
