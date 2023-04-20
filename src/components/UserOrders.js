@@ -9,7 +9,7 @@ function UserOrders() {
     async function fetchData() {
       const res1 = await fetch(`${serverApi}/orders/getUserOrders`, {
         method: "GET",
-        headers: localStorage.getItem("token"),
+        headers: { logintoken: localStorage.getItem("token") },
       });
       const data = await res1.json();
       data.message === "no orders found"
