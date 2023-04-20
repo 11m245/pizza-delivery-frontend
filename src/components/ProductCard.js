@@ -26,10 +26,10 @@ function ProductCard({ product }) {
             height="100%"
             src={
               isVeg
-                ? "https://png.pngitem.com/pimgs/s/151-1515150_veg-icon-png-circle-transparent-png.png"
+                ? "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png"
                 : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/2048px-Non_veg_symbol.svg.png"
             }
-            alt=""
+            alt={isVeg ? "Veg Symbol" : "Non Veg Symbol"}
           />
         </div>
         <div className="img-box">

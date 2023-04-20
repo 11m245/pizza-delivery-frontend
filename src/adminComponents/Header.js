@@ -30,11 +30,11 @@ function Header() {
           <SearchIcon className="search-icon" sx={{ fontSize: "20px" }} />
           <input type="text" placeholder="Search" />
         </div>
-        <div className="shopping-cart">
+        {/* <div className="shopping-cart">
           <Badge color="secondary" badgeContent={8} max={10}>
             <ShoppingCartIcon />
           </Badge>
-        </div>
+        </div> */}
         <div
           className="profile-container"
           onClick={() => setShowDropLog(!showDropLog)}

@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "../App";
 
-function AllOrders() {
+function UserOrders() {
   const [allOrders, setAllOrders] = useState([]);
   const { serverApi } = useContext(pizzaContext);
 
   useEffect(() => {
     async function fetchData() {
-      const res1 = await fetch(`${serverApi}/orders/getAllOrders`);
+      const res1 = await fetch(`${serverApi}/orders/getUserOrders`, {
+        method: "GET",
+        headers: localStorage.getItem("token"),
+      });
       const data = await res1.json();
       data.message === "no orders found"
         ? setAllOrders([])
@@ -68,8 +71,9 @@ function Order({ order }) {
       <div className="order-container section">
         <div className="top-section ">
           <div className="left">
-            <h5 className="customer-name">{user[0].name}</h5>
-            <p className="mobile">{user[0].mobile}</p>
+            <p>
+              <u>Delivery</u>
+            </p>
             <p className="address">{user[0].address}</p>
             <p className="pin">{user[0].pincode}</p>
           </div>
@@ -119,4 +123,4 @@ function Order({ order }) {
   );
 }
 
-export { AllOrders };
+export { UserOrders };

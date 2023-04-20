@@ -33,6 +33,7 @@ import {
 import { useReducer } from "react";
 import { cartReducer } from "./cartReducer";
 import { AllOrders } from "./adminComponents/AllOrders";
+import { UserOrders } from "./components/UserOrders";
 export const pizzaContext = createContext();
 function App() {
   // const serverApi = "http://localhost:4000";
@@ -65,10 +66,10 @@ function App() {
             <Route path="/activate/:id" element={<ActivateUser />} />
             <Route path="/user" element={<UserLayout />}>
               <Route index element={<UserHome />} />
+              <Route path="reports" element={<UserOrders />} />
               {/* <Route path="chat" element={<Chat />} />
               <Route path="wallet" element={<Wallet />} />
-              <Route path="favorties" element={<Favorties />} />
-              <Route path="reports" element={<Reports />} />
+              <Route path="favorties" element={<Favorties />} />              
               <Route path="settings" element={<Settings />} /> */}
               <Route path="*" element={<NotFound />} />
             </Route>
