@@ -109,6 +109,27 @@ export function LoginForm() {
             Forgot password?
           </Link>
         </div>
+        <div className="demo-login-buttons d-flex justify-content-between">
+          <Button
+            type="button"
+            variant="contained"
+            color="success"
+            onClick={() =>
+              login({ email: "user@gmail.com", password: "12345678" })
+            }
+          >
+            Demo User-Login
+          </Button>
+          <Button
+            type="button"
+            variant="contained"
+            onClick={() =>
+              login({ email: "admin@gmail.com", password: "12345678" })
+            }
+          >
+            Demo Admin-Login
+          </Button>
+        </div>
       </form>
     </>
   );
