@@ -5,6 +5,6 @@ Using this application, users can order pizza and shop can process their orders 
 ## Demo Login Credentials
 
         
-for Shop ->  username - shop@gmail.com , password - 12345678 \
+for Shop ->  username - admin@gmail.com , password - 12345678 \
 for users -> username - user@gmail.com , password - 12345678
 
