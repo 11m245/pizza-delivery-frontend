@@ -17,13 +17,13 @@ function BottomNavigation() {
     { name: "Categories", icon: <CategoryIcon />, path: "categories" },
     { name: "Stock", icon: <Inventory2Icon />, path: "stock" },
     { name: "All Orders", icon: <SummarizeRoundedIcon />, path: "allOrders" },
-    {
-      name: "Cash Report",
-      icon: <AccountBalanceWalletRoundedIcon />,
-      path: "path1",
-    },
+    // {
+    //   name: "Cash Report",
+    //   icon: <AccountBalanceWalletRoundedIcon />,
+    //   path: "path1",
+    // },
 
-    { name: "Settings", icon: <SettingsRoundedIcon />, path: "path1" },
+    // { name: "Settings", icon: <SettingsRoundedIcon />, path: "path1" },
   ];
 
   const [active, setActive] = useState("");

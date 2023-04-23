@@ -604,3 +604,16 @@ letter-spacing: 2px!important;
   outline-offset: 2px;
 
 }
+
+.payment-status-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-status-wrappper{
+  margin-top: 10px;
+  max-width: 400px;
+}

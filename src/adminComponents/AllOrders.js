@@ -7,7 +7,7 @@ function AllOrders() {
 
   useEffect(() => {
     async function fetchData() {
-      const res1 = await fetch(`${serverApi}/orders/getAllOrders`);
+      const res1 = await fetch(`${serverApi}/orders/getAllOrdersWithPayment`);
       const data = await res1.json();
       data.message === "no orders found"
         ? setAllOrders([])
@@ -37,8 +37,9 @@ function Order({ order }) {
     paymentMode,
     currentStatus,
     products,
-    orderAmount,
+    invoiceAmount,
     user,
+    payment,
   } = order;
 
   const orderCode = {
@@ -66,15 +67,15 @@ function Order({ order }) {
   return (
     <>
       <div className="order-container section">
-        <div className="top-section ">
+        <div className="top-section d-flex justify-content-between">
           <div className="left">
-            <h5 className="customer-name">{user[0].name}</h5>
-            <p className="mobile">{user[0].mobile}</p>
-            <p className="address">{user[0].address}</p>
-            <p className="pin">{user[0].pincode}</p>
+            <h5 className="customer-name">{user.name}</h5>
+            <p className="mobile">{user.mobile}</p>
+            <p className="address">{user.address}</p>
+            <p className="pin">{user.pincode}</p>
           </div>
           <div className="right">
-            {orderCode[currentStatus]}
+            <h5> {orderCode[currentStatus]}</h5>
             <p className="order-date">
               {new Date(statusUpdatedAt).toLocaleString()}
             </p>
@@ -94,10 +95,10 @@ function Order({ order }) {
                 {products.map((product) => {
                   const { name, qty, price } = product;
                   return (
-                    <tr>
+                    <tr key={name}>
                       <td>{name}</td>
                       <td className="text-center">{qty}</td>
-                      <td className="text-center">{price}</td>
+                      <td className="text-center">Rs. {price}</td>
                     </tr>
                   );
                 })}
@@ -106,11 +107,47 @@ function Order({ order }) {
           </div>
           <div className="right">
             <h5 className="total title-small fw-bold">Total</h5>
-            <h5 className="total-price text-success">$ {orderAmount}</h5>
+            <h5 className="total-price text-success">Rs. {invoiceAmount}</h5>
             {paymentMode === "paid" ? (
               <p className="payment-status text-success">{paymentMode}</p>
             ) : (
               <p className="payment-status text-primary">{paymentMode}</p>
+            )}
+          </div>
+        </div>
+        <div className="payment-section d-flex flex-column gap-1">
+          <h5 className="text-center">
+            <u>Payment Details</u>
+          </h5>
+          <div className="d-flex justify-content-between">
+            <h6>mode: {payment.modeOfPayment}</h6>
+            <h6>paid Amount: Rs. {payment.paidAmount}</h6>
+            <h6
+              className={
+                payment.sessionStatus === "complete"
+                  ? "text-success"
+                  : "text-danger"
+              }
+            >
+              request : {payment.sessionStatus}
+            </h6>
+          </div>
+
+          <h6>Payment ID: {payment.paymentIntent}</h6>
+
+          <div className="d-flex justify-content-between">
+            <h6>
+              paid At: {new Date(payment.updatedAt * 1000).toLocaleString()}
+            </h6>
+
+            {payment.paymentStatus === "paid" ? (
+              <p className="payment-status text-success">
+                {payment.paymentStatus}
+              </p>
+            ) : (
+              <p className="payment-status text-danger">
+                {payment.paymentStatus}
+              </p>
             )}
           </div>
         </div>

@@ -9,7 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "./App";
 import { toast } from "react-toastify";
 function UserLayout() {
-  const { serverApi } = useContext(pizzaContext);
+  const { serverApi, clientURL } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
   const { cartItems, cartDispatch } = useContext(pizzaContext);
 
@@ -25,12 +25,38 @@ function UserLayout() {
   const clearCart = () => {
     cartDispatch({ type: "CLEAR" });
   };
-  const placeOrder = () => {
+  // const placeOrder = () => {
+  //   // console.log("cart items now", cartItems);
+  //   const orderItems = cartItems.map((item) => {
+  //     return { _id: item._id, qty: item.qty };
+  //   });
+  //   fetch(`${serverApi}/orders/new`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       logintoken: localStorage.getItem("token"),
+  //     },
+  //     body: JSON.stringify(orderItems),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       clearCart();
+  //       setShowCart(false);
+  //       setTotal(0);
+  //       // console.log("order response data", data);
+  //       data.message === "order placed"
+  //         ? toast.success(data.message)
+  //         : toast.error(data.message);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  const initiatePayment = () => {
     // console.log("cart items now", cartItems);
     const orderItems = cartItems.map((item) => {
       return { _id: item._id, qty: item.qty };
     });
-    fetch(`${serverApi}/orders/new`, {
+    fetch(`${serverApi}/payments/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,15 +66,22 @@ function UserLayout() {
     })
       .then((response) => response.json())
       .then((data) => {
-        clearCart();
+        // clearCart();
         setShowCart(false);
-        setTotal(0);
+        // setTotal(0);
         // console.log("order response data", data);
-        data.message === "order placed"
+        data.message === "Successful Payment Session Creation"
           ? toast.success(data.message)
           : toast.error(data.message);
+
+        window.location = data.payload?.url
+          ? data.payload.url
+          : `${clientURL}/user`;
+        // if (data.message === "Successful Payment Session Creation") {
+        //   window.alert(data.message);
+        // }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   };
   return (
     <>
@@ -105,7 +138,7 @@ function UserLayout() {
                       variant="contained"
                       color="success"
                       endIcon={<SendIcon />}
-                      onClick={() => placeOrder()}
+                      onClick={() => initiatePayment()}
                     >
                       Check Out
                     </Button>
