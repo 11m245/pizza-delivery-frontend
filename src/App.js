@@ -39,7 +39,8 @@ export const pizzaContext = createContext();
 function App() {
   // const serverApi = "http://localhost:4000";
   // const clientURL = "http://localhost:3000";
-  const serverApi = "https://pizza-delivery-backend.vercel.app";
+  // const serverApi = "https://pizza-delivery-backend.vercel.app";
+  const serverApi = "https://pizza-delivery-backend.onrender.com";
   const clientURL = "https://candid-blancmange-22f08a.netlify.app";
 
   const initialCartItems = [];
