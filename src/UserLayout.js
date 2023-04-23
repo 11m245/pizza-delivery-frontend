@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
 import { BottomNavigation } from "./components/BottomNavigation";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,10 +11,10 @@ import { toast } from "react-toastify";
 function UserLayout() {
   const { serverApi, clientURL } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
-  const { cartItems, cartDispatch } = useContext(pizzaContext);
+  const { cartItems } = useContext(pizzaContext);
 
   const [total, setTotal] = useState(0);
-  const navigate = useNavigate();
+
   useEffect(() => {
     const cTotal = cartItems.reduce((acc, cobj) => {
       return acc + parseInt(cobj.price) * parseInt(cobj.qty);
@@ -22,9 +22,9 @@ function UserLayout() {
     setTotal(cTotal);
   }, [cartItems]);
 
-  const clearCart = () => {
-    cartDispatch({ type: "CLEAR" });
-  };
+  // const clearCart = () => {
+  //   cartDispatch({ type: "CLEAR" });
+  // };
   // const placeOrder = () => {
   //   // console.log("cart items now", cartItems);
   //   const orderItems = cartItems.map((item) => {
@@ -77,9 +77,6 @@ function UserLayout() {
         window.location = data.payload?.url
           ? data.payload.url
           : `${clientURL}/user`;
-        // if (data.message === "Successful Payment Session Creation") {
-        //   window.alert(data.message);
-        // }
       })
       .catch((err) => console.error(err));
   };
@@ -114,6 +111,7 @@ function UserLayout() {
                       ))
                     ) : (
                       <img
+                        alt="cart-img"
                         className="mx-auto"
                         style={{ width: "200px", height: "200px" }}
                         src={

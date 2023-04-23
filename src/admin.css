@@ -95,7 +95,7 @@ height: 100%;
 
 .order-container .status-actions{
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 5px;
     /* position: fixed;
