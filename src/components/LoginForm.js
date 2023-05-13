@@ -3,12 +3,14 @@ import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { pizzaContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { CustomLoadingButton } from "./customLoadingButton";
 
 export function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const { serverApi } = useContext(pizzaContext);
   const navigate = useNavigate();
   // console.log(api);
@@ -62,13 +64,20 @@ export function LoginForm() {
 
   function login(values) {
     // console.log("api is", api);
+    setIsLoading(true);
     fetch(`${serverApi}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then((response) => checkResponse(response))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        setIsLoading(false);
+        checkResponse(response);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
   }
   return (
     <>
@@ -98,9 +107,16 @@ export function LoginForm() {
             touched.password && errors.password ? errors.password : null
           }
         />
-        <Button type="submit" variant="contained">
-          Submit
-        </Button>
+
+        <CustomLoadingButton
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          buttonComponent={
+            <Button type="submit" variant="contained">
+              Login
+            </Button>
+          }
+        />
         <div className="signup-forgot d-flex justify-content-between">
           <Link to="/signup" className="link-primary">
             Don't have an account? Sign Up

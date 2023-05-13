@@ -5,11 +5,13 @@ import LoginIcon from "@mui/icons-material/Login";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { pizzaContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { CustomLoadingButton } from "./customLoadingButton";
 
 export function SignupForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { serverApi } = useContext(pizzaContext);
   // console.log(api);
@@ -54,13 +56,20 @@ export function SignupForm() {
   }
 
   function signup(values) {
+    setIsLoading(true);
     fetch(`${serverApi}/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then((response) => checkResponse(response))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        checkResponse(response);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
   }
   return (
     <>
@@ -158,9 +167,16 @@ export function SignupForm() {
             touched.password && errors.password ? errors.password : null
           }
         />
-        <Button variant="contained" type="submit" endIcon={<SendIcon />}>
-          Register
-        </Button>
+
+        <CustomLoadingButton
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          buttonComponent={
+            <Button variant="contained" type="submit" endIcon={<SendIcon />}>
+              Register
+            </Button>
+          }
+        />
       </form>
     </>
   );

@@ -8,7 +8,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { useContext, useEffect, useState } from "react";
 import { pizzaContext } from "./App";
 import { toast } from "react-toastify";
+import { CustomLoadingButton } from "./components/customLoadingButton";
 function UserLayout() {
+  const [isLoading, setIsLoading] = useState(false);
   const { serverApi, clientURL } = useContext(pizzaContext);
   const [showCart, setShowCart] = useState(false);
   const { cartItems } = useContext(pizzaContext);
@@ -53,6 +55,7 @@ function UserLayout() {
 
   const initiatePayment = () => {
     // console.log("cart items now", cartItems);
+    setIsLoading(true);
     const orderItems = cartItems.map((item) => {
       return { _id: item._id, qty: item.qty };
     });
@@ -67,6 +70,7 @@ function UserLayout() {
       .then((response) => response.json())
       .then((data) => {
         // clearCart();
+
         setShowCart(false);
         // setTotal(0);
         // console.log("order response data", data);
@@ -77,8 +81,12 @@ function UserLayout() {
         window.location = data.payload?.url
           ? data.payload.url
           : `${clientURL}/user`;
+        setIsLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setIsLoading(false);
+        console.error(err);
+      });
   };
   return (
     <>
@@ -131,15 +139,21 @@ function UserLayout() {
                         <span> $ {total}</span>
                       </p>
                     </div>
-                    <Button
-                      className="check-out-button"
-                      variant="contained"
-                      color="success"
-                      endIcon={<SendIcon />}
-                      onClick={() => initiatePayment()}
-                    >
-                      Check Out
-                    </Button>
+                    <CustomLoadingButton
+                      isLoading={isLoading}
+                      setIsLoading={setIsLoading}
+                      buttonComponent={
+                        <Button
+                          className="check-out-button"
+                          variant="contained"
+                          color="success"
+                          endIcon={<SendIcon />}
+                          onClick={() => initiatePayment()}
+                        >
+                          Check Out
+                        </Button>
+                      }
+                    />
                   </>
                 ) : null}
               </div>
