@@ -6,6 +6,7 @@ import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { pizzaContext } from "../App";
+import { toast } from "react-toastify";
 function AdminHome() {
   const { serverApi } = useContext(pizzaContext);
   const [allCurrentOrders, setAllCurrentOrders] = useState([]);
@@ -331,8 +332,19 @@ function Order({ order, setIsOrdersReceived, isOrdersReceived }) {
       },
       body: JSON.stringify({ orderId: orderId }),
     })
-      .then((data) => setIsOrdersReceived(!isOrdersReceived))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        setIsOrdersReceived(!isOrdersReceived);
+        return response.json();
+      })
+      .then((data) => {
+        data.message === "order status updated"
+          ? toast.success(data.message)
+          : toast.error(data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+      });
   };
   return (
     <>
