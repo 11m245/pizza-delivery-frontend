@@ -37,11 +37,11 @@ import { UserOrders } from "./components/UserOrders";
 import { PaymentStatus } from "./components/PaymentStatus";
 export const pizzaContext = createContext();
 function App() {
-  // const serverApi = "http://localhost:4000";
-  // const clientURL = "http://localhost:3000";
-  const serverApi = "https://pizza-delivery-backend.vercel.app";
+  const serverApi = "http://localhost:4000";
+  const clientURL = "http://localhost:3000";
+  // const serverApi = "https://pizza-delivery-backend.vercel.app";
+  // const clientURL = "https://candid-blancmange-22f08a.netlify.app";
   // const serverApi = "https://pizza-delivery-backend.onrender.com";
-  const clientURL = "https://candid-blancmange-22f08a.netlify.app";
 
   const initialCartItems = [];
   const [cartItems, cartDispatch] = useReducer(cartReducer, initialCartItems);
@@ -55,7 +55,11 @@ function App() {
 
   return (
     <div className="App">
-      <ToastContainer style={{ marginTop: "4rem" }} theme="dark" />
+      <ToastContainer
+        style={{ marginTop: "4rem" }}
+        theme="dark"
+        autoClose={2500}
+      />
       <div className="project-container">
         <pizzaContext.Provider value={contextObj}>
           <Routes>

@@ -246,7 +246,7 @@ function Order({ order, setIsOrdersReceived, isOrdersReceived }) {
     statusUpdatedAt,
     _id: orderId,
     isCompleted,
-    paymentMode,
+
     currentStatus,
     products,
     invoiceAmount,
