@@ -54,7 +54,7 @@ export function LoginForm() {
       toast.success(data.message);
       localStorage.setItem("token", data.token);
       const isAdmin = await verifyUserRole(data.token);
-      console.log("vf user isAdmi", isAdmin);
+      // console.log("vf user isAdmi", isAdmin);
       isAdmin === true ? navigate("/admin") : navigate("/user");
       return data;
     } else {
